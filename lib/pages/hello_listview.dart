@@ -1,3 +1,5 @@
+import 'package:aula_01/pages/dog_page.dart';
+import 'package:aula_01/utils/nav.dart';
 import 'package:flutter/material.dart';
 
 class Dog{
@@ -8,7 +10,6 @@ class Dog{
 }
 
 class HelloListView extends StatefulWidget {
-
   @override
   _HelloListViewState createState() => _HelloListViewState();
 }
@@ -69,25 +70,30 @@ class _HelloListViewState extends State<HelloListView> {
   _itemView(List<Dog> dogs, int index) {
     Dog dog = dogs[index];
 
-    return Stack(
-      fit: StackFit.expand,
-      children: <Widget>[
-        _img(dog.foto),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Container(
-            margin: EdgeInsets.all(10),
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.black45,
-              borderRadius: BorderRadius.circular(15)
+    return GestureDetector(
+      onTap: () {
+        push(context, DogPage(dog));
+      },
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          _img(dog.foto),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.black45,
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: Text(
+                dog.nome,
+                style: TextStyle(fontSize: 26, color: Colors.white),),
             ),
-            child: Text(
-              dog.nome,
-              style: TextStyle(fontSize: 26, color: Colors.white),),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
